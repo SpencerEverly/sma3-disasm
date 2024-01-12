@@ -53,20 +53,20 @@ def exportbin(sourcepath, outputdir, binptrpath):
 if __name__ == "__main__":
     # search for the source ROM outside the disassembly directory
     try:
-        gbafiles = [path for path in Path("../..").iterdir() if path.suffix.lower() == ".gba"]
+        gbafiles = [path for path in Path("..").iterdir() if path.suffix.lower() == ".gba"]
         if len(gbafiles) == 1:
             # if only one GBA file is found, use that
             sourcepath = gbafiles[0]
-        elif Path("../../sma3.gba").exists():
+        elif Path("../sma3.gba").exists():
             # if "sma3.gba" exists, use that
-            sourcepath = Path("../../sma3.gba")
+            sourcepath = Path("../sma3.gba")
         elif len(gbafiles) == 0:
             raise Exception("No .gba files were found in " +
-                  str(Path("../..").resolve()))
+                  str(Path("..").resolve()))
         else:
             raise Exception(
                 f"{len(gbafiles)} total .gba files were found in " +
-                str(Path("../..").resolve()))
+                str(Path("..").resolve()))
     except Exception as err:
         errstr = str(err)
         if type(err) is not Exception:
